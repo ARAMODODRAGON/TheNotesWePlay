@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnx2ff5dgccao"]
+
+[ext_resource type="Script" path="res://Script/OnOffBlock.gd" id="1_26wu6"]
+[ext_resource type="Texture2D" uid="uid://46yyks1wq7h1" path="res://Sprites/OnOffBlocks.png" id="2_wiuob"]
+[ext_resource type="Script" path="res://Script/Nodes/SoundReactive.gd" id="3_ha1cl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unsw1"]
+size = Vector2(8, 8)
+
+[node name="GreenOnOffBlock" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_26wu6")
+note_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_unsw1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 4)
+texture = ExtResource("2_wiuob")
+hframes = 4
+vframes = 2
+frame = 1
+
+[node name="SoundReactive" type="Node" parent="."]
+script = ExtResource("3_ha1cl")
+
+[connection signal="on_sound_heard" from="SoundReactive" to="." method="_on_sound_heard"]
